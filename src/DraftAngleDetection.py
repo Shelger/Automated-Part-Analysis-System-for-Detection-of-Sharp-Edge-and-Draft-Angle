@@ -6,7 +6,7 @@ from stl import mesh
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 # Load the STL file
-my_mesh = mesh.Mesh.from_file('../tests/withDraft.stl')
+my_mesh = mesh.Mesh.from_file('../tests/LinearMotionGuide.stl')
 
 
 def visualize_mesh(mesh, highlight_faces):
@@ -41,7 +41,7 @@ def angle(v1, v2):
 # Thus no vector can be perpendicular to the axis z
 def draft_angle(normal):
     """Returns the draft angle in radians for a face with the given normal vector"""
-    z_vector = np.array([0, 1, 0])
+    z_vector = np.array([0, 0, 1])
     return angle(normal, z_vector)
 
 
