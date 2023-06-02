@@ -3,10 +3,18 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 from stl import mesh
+import sys
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 # Load the STL file
-my_mesh = mesh.Mesh.from_file('../tests/LinearMotionGuide.stl')
+args = sys.argv
+file_name = "../tests/"
+# Check if there are any arguments provided
+if len(args) > 1:
+    file_name += args[1]
+else:
+    print("No input provided.")
+my_mesh = mesh.Mesh.from_file(file_name)
 
 
 def visualize_mesh(mesh, highlight_faces):

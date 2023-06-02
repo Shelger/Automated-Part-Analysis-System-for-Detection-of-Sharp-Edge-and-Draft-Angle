@@ -3,10 +3,18 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d.art3d import Line3DCollection
 from stl import mesh
+import sys
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 # Load the STL file
-my_mesh = mesh.Mesh.from_file('../tests/LinearMotionGuide.stl')
+args = sys.argv
+file_name = "../tests/"
+# Check if there are any arguments provided
+if len(args) > 1:
+    file_name += args[1]
+else:
+    print("No input provided.")
+my_mesh = mesh.Mesh.from_file(file_name)
 
 
 def visualize_edges(mesh, highlight_edges):
@@ -22,7 +30,7 @@ def visualize_edges(mesh, highlight_edges):
     highlight_lines = []
     for edge in highlight_edges:
         highlight_lines.append(edge)
-    highlight_line_collection = Line3DCollection(highlight_lines, linewidths=0.9, colors='r', alpha=1.0)
+    highlight_line_collection = Line3DCollection(highlight_lines, linewidths=1.5, colors='r', alpha=1.0)
 
     ax.add_collection3d(line_collection)
     ax.add_collection3d(highlight_line_collection)
